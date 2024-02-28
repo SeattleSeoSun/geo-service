@@ -12,9 +12,17 @@ public class GeoService {
     private final WikiMapiaClient wikiMapiaClient;
 
     public String findAll() {
-        var t = wikiMapiaClient.getGeo("category.getAll", "json");
-        System.out.println(t);
-       return t;
+        return wikiMapiaClient.getGeo("category.getAll", "json");
+    }
+
+    public String findAllBySurface(String lonMin, String latMin, String lonMax, String latMax) {
+        return wikiMapiaClient.getGeo("box",
+                                      "bbox",
+                                      lonMin,
+                                      latMin,
+                                      lonMax,
+                                      latMax,
+                                      "json");
     }
 
 }

@@ -11,4 +11,13 @@ public interface WikiMapiaClient {
 
     @GetMapping
     String getGeo(@RequestParam String function, @RequestParam String format);
+
+    @GetMapping
+    String getGeo(@RequestParam String function,
+                  @RequestParam String coordsby,
+                  @RequestParam String lon_min,
+                  @RequestParam String lat_min,
+                  @RequestParam String lon_max,
+                  @RequestParam String lat_max,
+                  @RequestParam String format);
 }

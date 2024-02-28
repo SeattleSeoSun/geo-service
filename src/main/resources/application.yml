@@ -13,9 +13,9 @@ springdoc:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/turka
-    username: root
-    password: Ghbdtn12
+    url: jdbc:mysql://localhost:3306/geo
+    username:
+    password:
   jpa:
     hibernate:
       ddl-auto: create-drop

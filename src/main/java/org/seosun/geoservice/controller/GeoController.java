@@ -1,13 +1,7 @@
 package org.seosun.geoservice.controller;
 
-import java.util.List;
-
-import org.seosun.geoservice.controller.model.GeoResponse;
-import org.seosun.geoservice.controller.model.Surface;
-import org.seosun.geoservice.facade.GeoFacade;
-import org.springframework.http.ResponseEntity;
+import org.seosun.geoservice.service.GeoService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,17 +13,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GeoController {
 
-    private final GeoFacade geoFacade;
+    private final GeoService geoService;
 
     @GetMapping
     public String findAll() {
-        return geoFacade.findAll();
+        return geoService.findAll();
     }
 
-//    @GetMapping
-//    public ResponseEntity<GeoResponse> findAllBySurface(@RequestBody Surface surface) {
-//        return geoFacade.findAllBySurface(surface);
-//    }
+    @GetMapping("/bySurface")
+    public String findAllBySurface(@RequestParam String lonMin,
+                                   @RequestParam String latMin,
+                                   @RequestParam String lonMax,
+                                   @RequestParam String latMax) {
+        return geoService.findAllBySurface(lonMin, latMin, lonMax, latMax);
+    }
 //
 //    @GetMapping
 //    public ResponseEntity<GeoResponse> findByCategory(@RequestParam String category) {
