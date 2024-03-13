@@ -1,5 +1,7 @@
 package org.seosun.geoservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.seosun.geoservice.service.GeoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,20 +29,14 @@ public class GeoController {
                                    @RequestParam String latMax) {
         return geoService.findAllBySurface(lonMin, latMin, lonMax, latMax);
     }
-//
-//    @GetMapping
-//    public ResponseEntity<GeoResponse> findByCategory(@RequestParam String category) {
-//        return geoFacade.findByCategory(category);
-//    }
-//
-//    @GetMapping
-//    public ResponseEntity<GeoResponse> findByCategories(@RequestParam List<String> categories) {
-//        return geoFacade.findByCategories(categories);
-//    }
-//
-//    @GetMapping
-//    public ResponseEntity<GeoResponse> findByCategoriesAndSurface(@RequestParam List<String> categories,
-//                                                        @RequestBody Surface surface) {
-//        return geoFacade.findByCategoriesAndSurface(categories, surface);
-//    }
+
+    @GetMapping ("/byID")
+    public String findByID(@RequestParam Long id) throws JsonProcessingException {
+        return geoService.findByID(id);
+    }
+
+    @GetMapping("/byName")
+    public String findAllByName(@RequestParam String name) {
+        return geoService.findAllByName(name);
+    }
 }

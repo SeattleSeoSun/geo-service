@@ -20,4 +20,14 @@ public interface WikiMapiaClient {
                   @RequestParam String lon_max,
                   @RequestParam String lat_max,
                   @RequestParam String format);
+
+    @GetMapping
+    String getGeoById(@RequestParam String function,
+                      @RequestParam Long id,
+                      @RequestParam String format);
+
+    @GetMapping
+    String getGeoByName(@RequestParam String function,
+                        @RequestParam String name,
+                        @RequestParam String format);
 }
