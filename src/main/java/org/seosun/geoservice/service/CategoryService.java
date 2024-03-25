@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class GeoService {
+public class CategoryService {
 
     private final static String FORMAT_JSON = "json";
     private final static String CATEGORY_GET_ALL = "category.getAll";
@@ -21,31 +21,17 @@ public class GeoService {
     private final CategoryRepository categoryRepository;
     private final ObjectMapper objectMapper;
 
-    public String findAll() {
-        return wikiMapiaClient.getGeo(CATEGORY_GET_ALL, FORMAT_JSON);
-    }
-
-    public String findAllBySurface(String lonMin, String latMin, String lonMax, String latMax) {
-        return wikiMapiaClient.getGeo("box",
-                                      "bbox",
-                                      lonMin,
-                                      latMin,
-                                      lonMax,
-                                      latMax,
-                                      FORMAT_JSON);
+    public String findAll(String name) {
+        return wikiMapiaClient.getCategories(CATEGORY_GET_ALL, name, FORMAT_JSON);
     }
 
     public String findByID(Long id) throws JsonProcessingException {
-        var categoryJson = wikiMapiaClient.getGeoById("category.getById", id, FORMAT_JSON);
+        var categoryJson = wikiMapiaClient.getCategoryById("category.getById", id, FORMAT_JSON);
 
         var category = objectMapper.readValue(categoryJson, CategoryWrapper.class)
                                    .getCategory();
         categoryRepository.save(category);
 
         return categoryJson;
-    }
-
-    public String findAllByName(String name) {
-        return wikiMapiaClient.getGeoByName(CATEGORY_GET_ALL, name, FORMAT_JSON);
     }
 }

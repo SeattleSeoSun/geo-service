@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: geo
+    ports:
+      - "13306:3306"
+    volumes:
+      - /docker-compose-conf/mysql/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql

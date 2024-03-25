@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface WikiMapiaClient {
 
     @GetMapping
-    String getGeo(@RequestParam String function, @RequestParam String format);
+    String getCategories(@RequestParam String function, @RequestParam String name, @RequestParam String format);
+
+    @GetMapping
+    String getCategoryById(@RequestParam String function,
+                           @RequestParam Long id,
+                           @RequestParam String format);
 
     @GetMapping
     String getGeo(@RequestParam String function,
@@ -20,14 +25,4 @@ public interface WikiMapiaClient {
                   @RequestParam String lon_max,
                   @RequestParam String lat_max,
                   @RequestParam String format);
-
-    @GetMapping
-    String getGeoById(@RequestParam String function,
-                      @RequestParam Long id,
-                      @RequestParam String format);
-
-    @GetMapping
-    String getGeoByName(@RequestParam String function,
-                        @RequestParam String name,
-                        @RequestParam String format);
 }
